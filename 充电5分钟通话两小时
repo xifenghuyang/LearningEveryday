@@ -1,4 +1,7 @@
 ##
+首先从markdown语法学起：
+   参考资料：（1）http://blog.csdn.net/zhaokaiqiang1992/article/details/41349819
 ###-【1】C++多态-
 [知识链接]
-(http://blog.csdn.net/hackbuteer1/article/details/7475622)
+1）(http://blog.csdn.net/hackbuteer1/article/details/7475622)
+2）《Effective C++》第六章 P149-P192。
