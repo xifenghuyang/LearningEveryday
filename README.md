@@ -1,2 +1,0 @@
-# -InterviewQuestion-
-leetcode
