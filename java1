@@ -1,0 +1,277 @@
+#### 一、开源使用
+
+1. 自研软件，开源后，并捐献给apache基金项目。
+
+   使用该软件社区版，已经不能认为该软件为自研软件。(有其他力量参与)
+
+2. 内部自研自用软件，通过静态链接方式使用一款AGPL开源软件。
+
+   需要履行开源义务。AGPL简单说就是，谁能访问你的系统，就要向谁公开源码。面向互联网用户的系统，才需要向全世界公开。(链接使用也是使用)
+
+#### 二、工程构建
+
+#### 三、网络安全框架
+
+<http://3ms.huawei.com/km/blogs/details/6437325>
+
+1. ###### CSF核心框架
+
+   包括4类元素：功能Function、分类Categories、子类Subcategories、信息性参考InformativeReference。
+
+   功能包括：识别Identity、保护Protect、检测detect、响应Response、恢复Recover
+
+   2. SQL攻击
+
+   原sql语句：select * from test_table where id = ‘input’ // input 为用户输入部分
+
+   未做校验时：input可以这样来构造 input=’ or 1=1 #，替换到sql语句中：
+
+   替换后：select * from test_table where id = ‘1’ or 1=1 #’
+
+   
+
+   select * from users where username=’admin’ # and password=’’
+
+   可以看到#后面的sql语句已被注释，此时只保留了
+
+   select * from users where username=’admin’
+
+   这句sql，从数据库中查找username为admin的user，当然存在啦，绕过对password的校验。
+
+   
+
+   SELECT * FROM users WHERE username='' union select '1','admin',md5('admin') #‘
+
+   再次尝试登陆
+
+   Username：' union select '1','admin',md5('admin') #‘
+
+   Password: admin
+
+#### 四、网络协议
+
+1. ###### TCP/IP协议
+
+   一组协议：传输控制协议Transmission Control Protocol/网际协议Internet Protocol。不安全
+
+2. ###### IPSec*（IP Security）*协议
+
+   产生于IPv6的制定之中，用于提供IP层的安全性。
+
+3. ###### SSH协议
+
+   <https://www.cnblogs.com/zmlctt/p/3946860.html>
+
+   一种加密的网络传输**协议**，可在不安全的网络中为网络服务提供安全的传输环境。
+
+   ###### 4. SSL协议
+
+   *SSL*(Secure Sockets Layer 安全套接层),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。
+
+   #### 五、Java
+
+   ###### 1. 字节长度
+
+   byte 8位
+
+   char 16位
+
+   short 16位
+
+   int 32位
+
+   float 32位
+
+   long 64位
+
+   double 64位
+
+   ###### 2. 值不可变类型
+
+   不可变类最适合表示抽象数据类型（如数字、枚举类型或颜色）的值。Java 类库中的基本数据类型的包装类（如Integer 、 Long 和 Float ）都是不可变的，其它数字类型（如 BigInteger 和 BigDecimal ）也是不可变的。
+
+   ###### 3. switch……case
+
+   switch接受的参数类型有10种，分别是基本类型的byte,short,int,char，以及引用类型的String(只有JavaSE 7 和以后的版本 可以接受String类型参数),enum和byte,short,int,char的封装类Byte,Short,Integer,Character
+
+   ###### 4. 异常
+
+   在Java中，根据错误性质将运行错误分为两类：错误和异常。
+   在Java程序的执行过程中，如果出现了异常事件，就会生成一个异常对象。生成的异常对象将传递Java运行时系统，这一异常的产生和提交过程称为抛弃（throw）异常。
+   当Java运行时系统得到一个异常对象时，它将会沿着方法的调用栈逐层回溯，寻找处理这一异常的代码。找到能够处理这类异常的方法后，运行时系统把当前异常对象交给这个方法进行处理，这一过程称为捕获（catch）异常。
+
+   **Throwable**类是 Java 语言中所有错误或异常的超类。它的两个子类是Error和Exception；
+
+   在Java中，只有Throwable或其子类才能被抛出（throw）或者被捕获（catch）
+
+   **Error**是Throwable 的子类，用于指示合理的应用程序不应该试图捕获的严重问题。Error类包括一些严重的程序不能处理的系统错误类，如OutOfMemoryError内存溢出、虚拟机错误、栈溢出StackOverflowError等。这类错误一般与硬件有关，与程序本身无关，通常由系统进行处理，程序本身无法捕获和处理。
+
+   **Exception**类及其子类是 Throwable 的一种形式，它指出了合理的应用程序想要捕获的条件。
+
+   ###### 5.Collection
+
+   Java就提供了不同的集合类。这多个集合类的数据结构不同，但是它们都是要提供存储和遍历功能的，我们把它们的共性不断的向上提取，最终就形成了集合的继承体系结构图。
+
+   Collection
+   |--List
+   |--ArrayList
+   |--Vector
+   |--LinkedList
+   |--Set
+   |--HashSet
+   |--TreeSet
+
+   ###### 6.NIO
+
+   监听四种不同类型的事件：
+
+   - **Connect**  SelectionKey.OP_CONNECT   **连接就绪** 
+   - **Accept**   SelectionKey.OP_ACCEPT   **接收就绪**
+   - **Read**   SelectionKey.OP_READ  **读就绪**
+   - **Write**   SelectionKey.OP_WRITE  **写就绪**
+
+   ###### 7.反射机制
+
+   反射的概念是由Smith在1982年首次提出的，主要是指程序可以访问、检测和修改它本身状态或行为的一种能力。
+
+   允许运行中的 Java 程序对自身进行检查，并能直接操作程序的内部属性和方法。允许程序创建和控制任何类的对象，无需提前硬编码目标类。允许程序于执行期 Reflection APIs 取得任何已知名称之 class 的內部信息，包括 package、type parameters、superclass、implemented interfaces、inner classes, outer class, fields、constructors、methods、modifiers，並可于执行期生成instances、变更 fields 內容或唤起 methods。
+
+   Java的类反射所需要的类并不多，它们分别是：Field、Constructor、Method、Class、Object
+
+   ###### 8. 多线程异常处理
+
+   java为我们提供了一种线程内发生异常时能够在线程代码边界之外处理异常的回调机制，即Thread对象提供的setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)方法。
+   通过该方法给某个thread设置一个UncaughtExceptionHandler，可以确保在该线程出现异常时能通过回调UncaughtExceptionHandler接口的public void uncaughtException(Thread t, Throwable e) 方法来处理异常，这样的好处或者说目的是可以在线程代码边界之外（Thread的run()方法之外），有一个地方能处理未捕获异常。
+   线程方法的异常（无论是checked还是unchecked exception），都应该在线程代码边界之内（run方法内）进行try catch并处理掉.
+
+   #### 六、编码规范
+
+   ###### 1.空格
+
+   注释符号与注释内容之间
+
+   逗号，分号与后续内容之间
+
+   if关键字后
+
+   变量与自增运算符之间没有空格。
+
+   ###### 2.排版
+
+   规则3.1 避免文件过长，不超过2000行（非空非注释行）
+
+   规则3.2 一个源文件按顺序包含版权、package、import、顶层类，且用空行分隔
+
+   规则5.1 避免方法过长，不超过50行（非空非注释）
+
+   规则5.2 避免方法的代码块嵌套过深，不要超过4层
+
+   建议5.1 不要把方法的入参当做工作变量/临时变量
+
+   代码不规范：if判断中，常量和null放在左边
+
+   
+
+   七、问题定位
+
+   1. jstack
+
+      jstack简单使用，定位死循环、线程阻塞、死锁等问题
+
+      <https://www.cnblogs.com/chenpi/p/5377445.html>
+
+      --Werror
+      视警告为错误;出现任何警告即放弃编译.
+
+      # 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
